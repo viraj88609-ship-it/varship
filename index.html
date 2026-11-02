@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Destination Preview</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f5f6df;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #344054;
+    }
+
+    .card {
+      width: 480px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .preview-text {
+      font-size: 18px;
+      color: #667085;
+      margin-bottom: 18px;
+    }
+
+    .destination {
+      display: inline-block;
+      font-size: 24px;
+      font-weight: 500;
+      color: #0067d9;
+      text-decoration: underline;
+      margin-bottom: 18px;
+    }
+
+    .description {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #667085;
+      margin: 0 0 24px;
+    }
+
+    .security-box {
+      background: #f7f8fa;
+      border-radius: 14px;
+      padding: 22px 20px;
+      margin-bottom: 24px;
+    }
+
+    .security-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1d2939;
+      margin-bottom: 18px;
+    }
+
+    .security-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 13px 0;
+      font-size: 14px;
+      color: #475467;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shield {
+      border: 2px solid #0070e0;
+      border-radius: 6px 6px 9px 9px;
+      width: 15px;
+      height: 18px;
+    }
+
+    .eye {
+      width: 19px;
+      height: 12px;
+      border: 2px solid #0070e0;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .eye::after {
+      content: "";
+      width: 4px;
+      height: 4px;
+      background: #0070e0;
+      border-radius: 50%;
+      position: absolute;
+      left: 5px;
+      top: 2px;
+    }
+
+    .check {
+      color: #16a34a;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .continue-btn {
+      width: 100%;
+      height: 48px;
+      border: none;
+      border-radius: 8px;
+      background: #06447f;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .continue-btn:hover {
+      background: #053765;
+    }
+
+    .arrow {
+      font-size: 22px;
+      margin-left: 8px;
+      vertical-align: -1px;
+    }
+
+    .redirect {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+      color: #667085;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: calc(100% - 32px);
+        padding: 30px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="preview-text">
+      Here's a preview of your destination
+    </div>
+
+    <a href="#" class="destination">
+      Your Website
+    </a>
+
+    <p class="description">
+      We couldn't retrieve information about this page, but we're
+      reviewing the link for your safety.
+    </p>
+
+    <div class="security-box">
+
+      <div class="security-title">
+        Security check
+      </div>
+
+      <div class="security-item">
+        <span class="icon">
+          <span class="shield"></span>
+        </span>
+        <span>Security scan completed</span>
+      </div>
+
+      <div class="security-item">
+        <span class="icon">
+          <span class="eye"></span>
+        </span>
+        <span>Links monitored for suspicious behavior</span>
+      </div>
+
+      <div class="security-item">
+        <span class="icon check">✓</span>
+        <span>No threats detected at this time</span>
+      </div>
+
+    </div>
+
+    <button class="continue-btn" onclick="continueToSite()">
+      Continue to destination
+      <span class="arrow">→</span>
+    </button>
+
+    <div class="redirect">
+      You'll be redirected in <span id="countdown">2</span> seconds...
+    </div>
+
+  </div>
+
+  <script>
+    let seconds = 2;
+
+    const countdown = document.getElementById("countdown");
+
+    const timer = setInterval(() => {
+      seconds--;
+
+      countdown.textContent = seconds;
+
+      if (seconds <= 0) {
+        clearInterval(timer);
+        // Put your legitimate destination URL here if needed.
+        // window.location.href = "https://example.com";
+      }
+    }, 1000);
+
+    function continueToSite() {
+      // Put your legitimate destination URL here.
+      window.location.href = "https://example.com";
+    }
+  </script>
+
+</body>
+</html>
