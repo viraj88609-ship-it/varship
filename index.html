@@ -4,234 +4,2283 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Destination Preview</title>
+  <title>Nexora | Fitness & Wellness</title>
 
   <style>
-    * {
-      box-sizing: border-box;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #f5f6df;
-      font-family: Arial, Helvetica, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #344054;
+    html{
+      scroll-behavior:smooth;
     }
 
-    .card {
-      width: 480px;
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 40px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(74,255,160,.10),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 80% 25%,
+          rgba(0,140,255,.10),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 50% 80%,
+          rgba(94,255,180,.08),
+          transparent 32%
+        ),
+        #050706;
+
+      color:white;
+      overflow-x:hidden;
     }
 
-    .preview-text {
-      font-size: 18px;
-      color: #667085;
-      margin-bottom: 18px;
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+
+      padding:18px 7%;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      z-index:999;
+
+      background:rgba(5,7,6,.62);
+      backdrop-filter:blur(18px);
+
+      border-bottom:
+        1px solid rgba(255,255,255,.08);
     }
 
-    .destination {
-      display: inline-block;
-      font-size: 24px;
-      font-weight: 500;
-      color: #0067d9;
-      text-decoration: underline;
-      margin-bottom: 18px;
+
+    .logo{
+      font-size:29px;
+      font-weight:800;
+      letter-spacing:1px;
+
+      text-shadow:
+        0 0 20px rgba(87,239,145,.15);
     }
 
-    .description {
-      font-size: 14px;
-      line-height: 1.55;
-      color: #667085;
-      margin: 0 0 24px;
+
+    .logo span{
+      color:#63f59a;
+
+      text-shadow:
+        0 0 10px rgba(99,245,154,.40),
+        0 0 25px rgba(99,245,154,.20);
     }
 
-    .security-box {
-      background: #f7f8fa;
-      border-radius: 14px;
-      padding: 22px 20px;
-      margin-bottom: 24px;
+
+    nav a{
+      color:#e6e6e6;
+
+      text-decoration:none;
+
+      margin-left:28px;
+
+      font-size:15px;
+
+      transition:.3s;
     }
 
-    .security-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: #1d2939;
-      margin-bottom: 18px;
+
+    nav a:hover{
+      color:#63f59a;
+
+      text-shadow:
+        0 0 12px rgba(99,245,154,.35);
     }
 
-    .security-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 13px 0;
-      font-size: 14px;
-      color: #475467;
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero{
+      min-height:100vh;
+
+      position:relative;
+
+      display:flex;
+      align-items:center;
+
+      padding:120px 7% 70px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(4,7,5,.96) 0%,
+          rgba(4,7,5,.72) 45%,
+          rgba(4,7,5,.22) 100%
+        ),
+        url(
+          "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1800&q=85"
+        );
+
+      background-size:cover;
+      background-position:center;
+
+      overflow:hidden;
     }
 
-    .icon {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+    .hero::before{
+      content:"";
+
+      position:absolute;
+
+      width:450px;
+      height:450px;
+
+      left:-100px;
+      top:100px;
+
+      background:
+        rgba(67,255,144,.22);
+
+      filter:blur(110px);
+
+      border-radius:50%;
+
+      animation:
+        lightOne 6s
+        ease-in-out
+        infinite alternate;
     }
 
-    .shield {
-      border: 2px solid #0070e0;
-      border-radius: 6px 6px 9px 9px;
-      width: 15px;
-      height: 18px;
+
+    .hero::after{
+      content:"";
+
+      position:absolute;
+
+      width:450px;
+      height:450px;
+
+      right:-100px;
+      bottom:20px;
+
+      background:
+        rgba(0,128,255,.20);
+
+      filter:blur(120px);
+
+      border-radius:50%;
+
+      animation:
+        lightTwo 7s
+        ease-in-out
+        infinite alternate;
     }
 
-    .eye {
-      width: 19px;
-      height: 12px;
-      border: 2px solid #0070e0;
-      border-radius: 50%;
-      position: relative;
-    }
 
-    .eye::after {
-      content: "";
-      width: 4px;
-      height: 4px;
-      background: #0070e0;
-      border-radius: 50%;
-      position: absolute;
-      left: 5px;
-      top: 2px;
-    }
+    @keyframes lightOne{
 
-    .check {
-      color: #16a34a;
-      font-size: 21px;
-      font-weight: bold;
-    }
+      from{
+        transform:
+          translate(0,0)
+          scale(1);
 
-    .continue-btn {
-      width: 100%;
-      height: 48px;
-      border: none;
-      border-radius: 8px;
-      background: #06447f;
-      color: #ffffff;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .continue-btn:hover {
-      background: #053765;
-    }
-
-    .arrow {
-      font-size: 22px;
-      margin-left: 8px;
-      vertical-align: -1px;
-    }
-
-    .redirect {
-      text-align: center;
-      margin-top: 18px;
-      font-size: 14px;
-      color: #667085;
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        width: calc(100% - 32px);
-        padding: 30px 24px;
+        opacity:.7;
       }
+
+      to{
+        transform:
+          translate(140px,75px)
+          scale(1.20);
+
+        opacity:1;
+      }
+
     }
+
+
+    @keyframes lightTwo{
+
+      from{
+        transform:
+          translate(0,0)
+          scale(1);
+
+        opacity:.6;
+      }
+
+      to{
+        transform:
+          translate(-130px,-70px)
+          scale(1.22);
+
+        opacity:.95;
+      }
+
+    }
+
+
+    .hero-content{
+      position:relative;
+
+      z-index:2;
+
+      max-width:720px;
+    }
+
+
+    .tag{
+      display:inline-block;
+
+      padding:8px 15px;
+
+      border-radius:30px;
+
+      background:
+        rgba(87,239,145,.13);
+
+      border:
+        1px solid
+        rgba(87,239,145,.35);
+
+      color:#79f5a5;
+
+      margin-bottom:20px;
+
+      font-size:13px;
+
+      letter-spacing:1px;
+
+      box-shadow:
+        0 0 25px
+        rgba(87,239,145,.10);
+    }
+
+
+    .hero h1{
+      font-size:72px;
+
+      line-height:1.02;
+
+      margin-bottom:22px;
+    }
+
+
+    .hero h1 span{
+      color:#63f59a;
+
+      text-shadow:
+        0 0 12px
+        rgba(99,245,154,.30),
+
+        0 0 30px
+        rgba(99,245,154,.20);
+    }
+
+
+    .hero p{
+      max-width:620px;
+
+      font-size:18px;
+
+      color:#c6cec9;
+
+      line-height:1.8;
+    }
+
+
+    .hero-buttons{
+      display:flex;
+
+      gap:15px;
+
+      flex-wrap:wrap;
+
+      margin-top:32px;
+    }
+
+
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .btn{
+      padding:15px 30px;
+
+      border:none;
+
+      border-radius:12px;
+
+      font-weight:700;
+
+      text-decoration:none;
+
+      cursor:pointer;
+
+      transition:.35s;
+
+      font-size:15px;
+    }
+
+
+    .btn-primary{
+      background:
+        linear-gradient(
+          135deg,
+          #75f8a4,
+          #23c968
+        );
+
+      color:#06150b;
+
+      box-shadow:
+
+        0 0 18px
+        rgba(75,255,145,.35),
+
+        0 15px 35px
+        rgba(64,230,126,.25);
+
+      position:relative;
+
+      overflow:hidden;
+    }
+
+
+    .btn-primary::before{
+      content:"";
+
+      position:absolute;
+
+      top:-80%;
+
+      left:-50%;
+
+      width:35%;
+
+      height:250%;
+
+      background:
+        rgba(255,255,255,.45);
+
+      transform:
+        rotate(25deg);
+
+      animation:
+        buttonLight
+        4s infinite;
+    }
+
+
+    @keyframes buttonLight{
+
+      0%{
+        left:-60%;
+      }
+
+      55%{
+        left:130%;
+      }
+
+      100%{
+        left:130%;
+      }
+
+    }
+
+
+    .btn-primary:hover{
+      transform:
+        translateY(-4px)
+        scale(1.03);
+
+      box-shadow:
+
+        0 0 30px
+        rgba(75,255,145,.45),
+
+        0 20px 45px
+        rgba(64,230,126,.38);
+    }
+
+
+    .btn-outline{
+      color:white;
+
+      background:
+        rgba(255,255,255,.06);
+
+      border:
+        1px solid
+        rgba(255,255,255,.15);
+
+      backdrop-filter:
+        blur(8px);
+    }
+
+
+    .btn-outline:hover{
+      background:
+        rgba(255,255,255,.12);
+
+      transform:
+        translateY(-4px);
+    }
+
+
+
+    /* =========================
+       FLOATING GLASS CARD
+    ========================= */
+
+    .floating-box{
+      position:absolute;
+
+      right:8%;
+      bottom:9%;
+
+      width:260px;
+
+      padding:22px;
+
+      border-radius:22px;
+
+      background:
+        rgba(10,18,13,.58);
+
+      border:
+        1px solid
+        rgba(255,255,255,.15);
+
+      backdrop-filter:
+        blur(20px);
+
+      box-shadow:
+
+        0 30px 70px
+        rgba(0,0,0,.5),
+
+        0 0 35px
+        rgba(87,239,145,.10);
+
+      animation:
+        floatCard
+        4s ease-in-out
+        infinite;
+
+      z-index:3;
+    }
+
+
+    @keyframes floatCard{
+
+      0%,100%{
+        transform:
+          translateY(0)
+          rotate(-2deg);
+      }
+
+      50%{
+        transform:
+          translateY(-18px)
+          rotate(2deg);
+      }
+
+    }
+
+
+    .floating-box h3{
+      color:#63f59a;
+
+      margin-bottom:7px;
+
+      text-shadow:
+        0 0 10px
+        rgba(99,245,154,.25);
+    }
+
+
+    .floating-box p{
+      color:#b8c3bd;
+
+      font-size:14px;
+    }
+
+
+
+    /* =========================
+       GENERAL SECTION
+    ========================= */
+
+    .section{
+      padding:100px 7%;
+    }
+
+
+    .section-title{
+      max-width:700px;
+
+      margin:
+        0 auto 60px;
+
+      text-align:center;
+    }
+
+
+    .section-title span{
+      color:#63f59a;
+
+      font-weight:700;
+
+      letter-spacing:1px;
+
+      font-size:13px;
+
+      text-shadow:
+        0 0 12px
+        rgba(99,245,154,.30);
+    }
+
+
+    .section-title h2{
+      font-size:46px;
+
+      margin:
+        12px 0 15px;
+    }
+
+
+    .section-title p{
+      color:#8f9b94;
+
+      line-height:1.7;
+    }
+
+
+
+    /* =========================
+       3D PHOTO CARDS
+    ========================= */
+
+    .card-grid{
+      max-width:1200px;
+
+      margin:auto;
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:30px;
+
+      perspective:1200px;
+    }
+
+
+    .fitness-card{
+      position:relative;
+
+      height:500px;
+
+      border-radius:28px;
+
+      overflow:hidden;
+
+      cursor:pointer;
+
+      transform-style:
+        preserve-3d;
+
+      transition:
+        transform .2s ease,
+        box-shadow .4s ease;
+
+      box-shadow:
+
+        0 30px 70px
+        rgba(0,0,0,.40),
+
+        0 0 0
+        rgba(70,255,140,0);
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+    }
+
+
+    .fitness-card:hover{
+      box-shadow:
+
+        0 35px 80px
+        rgba(0,0,0,.55),
+
+        0 0 35px
+        rgba(76,255,145,.18),
+
+        0 0 70px
+        rgba(0,135,255,.10);
+    }
+
+
+    .fitness-card::before{
+      content:"";
+
+      position:absolute;
+
+      top:-20%;
+      left:-70%;
+
+      width:35%;
+      height:150%;
+
+      background:
+
+        linear-gradient(
+          to right,
+          transparent,
+          rgba(255,255,255,.18),
+          transparent
+        );
+
+      transform:
+        rotate(18deg);
+
+      z-index:2;
+
+      pointer-events:none;
+
+      animation:
+        cardShine
+        6s infinite;
+    }
+
+
+    @keyframes cardShine{
+
+      0%{
+        left:-70%;
+      }
+
+      35%{
+        left:130%;
+      }
+
+      100%{
+        left:130%;
+      }
+
+    }
+
+
+    .fitness-card img{
+      position:absolute;
+
+      inset:0;
+
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+
+      transition:.6s;
+    }
+
+
+    .fitness-card:hover img{
+      transform:
+        scale(1.09);
+    }
+
+
+    .fitness-card::after{
+      content:"";
+
+      position:absolute;
+
+      inset:0;
+
+      background:
+
+        linear-gradient(
+          to top,
+
+          rgba(3,7,5,.98)
+          5%,
+
+          rgba(3,7,5,.55)
+          45%,
+
+          rgba(3,7,5,.05)
+          100%
+        );
+    }
+
+
+    .card-content{
+      position:absolute;
+
+      bottom:0;
+      left:0;
+
+      width:100%;
+
+      padding:30px;
+
+      z-index:3;
+
+      transform:
+        translateZ(45px);
+    }
+
+
+    .number{
+      width:48px;
+      height:48px;
+
+      border-radius:14px;
+
+      background:
+        rgba(87,239,145,.16);
+
+      border:
+        1px solid
+        rgba(87,239,145,.30);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      color:#63f59a;
+
+      font-weight:bold;
+
+      margin-bottom:18px;
+
+      box-shadow:
+        0 0 20px
+        rgba(87,239,145,.10);
+    }
+
+
+    .card-content h3{
+      font-size:28px;
+
+      margin-bottom:10px;
+    }
+
+
+    .card-content p{
+      color:#c5ccc8;
+
+      line-height:1.6;
+
+      font-size:14px;
+
+      margin-bottom:18px;
+    }
+
+
+    .learn{
+      background:none;
+
+      border:none;
+
+      color:#63f59a;
+
+      font-weight:bold;
+
+      cursor:pointer;
+
+      font-size:15px;
+
+      text-shadow:
+        0 0 10px
+        rgba(99,245,154,.25);
+    }
+
+
+    .learn:hover{
+      color:white;
+    }
+
+
+
+    /* =========================
+       FEATURE SECTION
+    ========================= */
+
+    .feature{
+      max-width:1200px;
+
+      margin:auto;
+
+      display:grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      align-items:center;
+
+      gap:70px;
+    }
+
+
+    .feature-image{
+      position:relative;
+
+      perspective:1000px;
+    }
+
+
+    .feature-image::before{
+      content:"";
+
+      position:absolute;
+
+      width:70%;
+      height:70%;
+
+      left:15%;
+      top:15%;
+
+      background:
+        rgba(71,255,143,.16);
+
+      filter:
+        blur(70px);
+
+      border-radius:50%;
+
+      z-index:-1;
+    }
+
+
+    .feature-image img{
+      width:100%;
+
+      height:550px;
+
+      object-fit:cover;
+
+      border-radius:30px;
+
+      transform:
+        rotateY(8deg)
+        rotateX(2deg);
+
+      box-shadow:
+
+        -20px 30px 70px
+        rgba(0,0,0,.6),
+
+        0 0 35px
+        rgba(71,255,143,.12),
+
+        20px 0 55px
+        rgba(0,130,255,.10);
+    }
+
+
+    .feature-text h2{
+      font-size:50px;
+
+      line-height:1.1;
+
+      margin-bottom:22px;
+    }
+
+
+    .feature-text h2 span{
+      color:#63f59a;
+
+      text-shadow:
+
+        0 0 12px
+        rgba(99,245,154,.30);
+    }
+
+
+    .feature-text p{
+      color:#9ba69f;
+
+      line-height:1.8;
+
+      margin-bottom:25px;
+    }
+
+
+    .points{
+      display:grid;
+
+      gap:14px;
+    }
+
+
+    .point{
+      padding:17px 18px;
+
+      border-radius:13px;
+
+      background:
+        rgba(255,255,255,.04);
+
+      border:
+        1px solid
+        rgba(255,255,255,.07);
+
+      box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.12);
+
+      transition:.3s;
+    }
+
+
+    .point:hover{
+      transform:
+        translateX(6px);
+
+      border-color:
+        rgba(87,239,145,.22);
+
+      box-shadow:
+        0 0 25px
+        rgba(87,239,145,.07);
+    }
+
+
+    .point strong{
+      color:#63f59a;
+    }
+
+
+
+    /* =========================
+       CTA PHOTO SECTION
+    ========================= */
+
+    .cta{
+      margin:
+        60px 7% 90px;
+
+      min-height:420px;
+
+      padding:70px;
+
+      border-radius:35px;
+
+      display:flex;
+
+      align-items:center;
+
+      background:
+
+        linear-gradient(
+          90deg,
+
+          rgba(2,10,6,.95),
+
+          rgba(2,10,6,.45)
+        ),
+
+        url(
+          "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=85"
+        );
+
+      background-size:cover;
+
+      background-position:center;
+
+      box-shadow:
+
+        0 30px 80px
+        rgba(0,0,0,.4),
+
+        0 0 45px
+        rgba(87,239,145,.07);
+    }
+
+
+    .cta-content{
+      max-width:600px;
+    }
+
+
+    .cta h2{
+      font-size:48px;
+
+      margin-bottom:18px;
+    }
+
+
+    .cta p{
+      color:#bec8c1;
+
+      line-height:1.7;
+    }
+
+
+
+    /* =========================
+       DETAIL SCREEN
+    ========================= */
+
+    .detail-screen{
+      position:fixed;
+
+      inset:0;
+
+      background:
+
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(87,239,145,.09),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(0,130,255,.08),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          135deg,
+          #050806,
+          #101914
+        );
+
+      z-index:5000;
+
+      display:none;
+
+      overflow-y:auto;
+
+      padding:90px 7%;
+    }
+
+
+    .detail-screen.active{
+      display:block;
+
+      animation:
+        detailOpen
+        .4s ease;
+    }
+
+
+    @keyframes detailOpen{
+
+      from{
+        opacity:0;
+
+        transform:
+          scale(.97);
+      }
+
+      to{
+        opacity:1;
+
+        transform:
+          scale(1);
+      }
+
+    }
+
+
+    .detail-inner{
+      max-width:1100px;
+
+      margin:auto;
+    }
+
+
+    .detail-image{
+      width:100%;
+
+      height:480px;
+
+      object-fit:cover;
+
+      border-radius:30px;
+
+      margin-bottom:35px;
+
+      box-shadow:
+
+        0 30px 70px
+        rgba(0,0,0,.45),
+
+        0 0 40px
+        rgba(87,239,145,.07);
+    }
+
+
+    .detail-inner h1{
+      font-size:48px;
+
+      margin-bottom:15px;
+    }
+
+
+    .detail-inner > p{
+      color:#aab4ae;
+
+      line-height:1.8;
+
+      max-width:800px;
+    }
+
+
+    .detail-boxes{
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:20px;
+
+      margin-top:35px;
+    }
+
+
+    .detail-box{
+      padding:25px;
+
+      border-radius:18px;
+
+      background:
+        rgba(255,255,255,.05);
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+
+      box-shadow:
+        0 20px 40px
+        rgba(0,0,0,.15);
+    }
+
+
+    .detail-box h3{
+      color:#63f59a;
+
+      margin-bottom:10px;
+    }
+
+
+    .detail-box p{
+      color:#9da7a1;
+
+      font-size:14px;
+
+      line-height:1.7;
+    }
+
+
+    .close{
+      position:fixed;
+
+      right:35px;
+      top:30px;
+
+      width:48px;
+      height:48px;
+
+      border-radius:50%;
+
+      border:
+        1px solid
+        rgba(255,255,255,.15);
+
+      background:
+        rgba(255,255,255,.08);
+
+      color:white;
+
+      font-size:22px;
+
+      cursor:pointer;
+
+      z-index:6000;
+
+      backdrop-filter:
+        blur(12px);
+    }
+
+
+    .close:hover{
+      background:
+        rgba(87,239,145,.15);
+
+      color:#63f59a;
+    }
+
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer{
+      padding:35px;
+
+      text-align:center;
+
+      color:#68736d;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.07);
+    }
+
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media(max-width:950px){
+
+      .hero h1{
+        font-size:52px;
+      }
+
+
+      .floating-box{
+        display:none;
+      }
+
+
+      .card-grid{
+        grid-template-columns:1fr;
+      }
+
+
+      .fitness-card{
+        max-width:600px;
+
+        width:100%;
+
+        margin:auto;
+      }
+
+
+      .feature{
+        grid-template-columns:1fr;
+      }
+
+
+      .feature-image img{
+        transform:none;
+      }
+
+
+      .detail-boxes{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+
+
+    @media(max-width:650px){
+
+      header{
+        flex-direction:column;
+
+        gap:12px;
+      }
+
+
+      nav a{
+        margin:0 8px;
+      }
+
+
+      .hero{
+        padding-top:160px;
+      }
+
+
+      .hero h1{
+        font-size:40px;
+      }
+
+
+      .hero p{
+        font-size:16px;
+      }
+
+
+      .section-title h2{
+        font-size:35px;
+      }
+
+
+      .feature-text h2{
+        font-size:38px;
+      }
+
+
+      .feature-image img{
+        height:400px;
+      }
+
+
+      .cta{
+        margin:30px 5%;
+
+        padding:45px 25px;
+      }
+
+
+      .cta h2{
+        font-size:37px;
+      }
+
+
+      .detail-image{
+        height:300px;
+      }
+
+
+      .detail-inner h1{
+        font-size:36px;
+      }
+
+    }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <div class="card">
 
-    <div class="preview-text">
-      Here's a preview of your destination
-    </div>
+<!-- =========================
+     HEADER
+========================= -->
 
-    <a href="#" class="destination">
-      Your Website
+<header>
+
+  <div class="logo">
+    Nex<span>ora</span>
+  </div>
+
+
+  <nav>
+
+    <a href="#home">
+      Home
     </a>
 
-    <p class="description">
-      We couldn't retrieve information about this page, but we're
-      reviewing the link for your safety.
-    </p>
+    <a href="#programs">
+      Programs
+    </a>
 
-    <div class="security-box">
+    <a href="#wellness">
+      Wellness
+    </a>
 
-      <div class="security-title">
-        Security check
-      </div>
+  </nav>
 
-      <div class="security-item">
-        <span class="icon">
-          <span class="shield"></span>
-        </span>
-        <span>Security scan completed</span>
-      </div>
+</header>
 
-      <div class="security-item">
-        <span class="icon">
-          <span class="eye"></span>
-        </span>
-        <span>Links monitored for suspicious behavior</span>
-      </div>
 
-      <div class="security-item">
-        <span class="icon check">✓</span>
-        <span>No threats detected at this time</span>
-      </div>
 
+<!-- =========================
+     HERO
+========================= -->
+
+<section
+  class="hero"
+  id="home"
+>
+
+  <div class="hero-content">
+
+    <div class="tag">
+      FITNESS • MOVEMENT • WELLNESS
     </div>
 
-    <button class="continue-btn" onclick="continueToSite()">
-      Continue to destination
-      <span class="arrow">→</span>
-    </button>
 
-    <div class="redirect">
-      You'll be redirected in <span id="countdown">2</span> seconds...
+    <h1>
+
+      Move Stronger.
+
+      Live
+
+      <span>
+        Better.
+      </span>
+
+    </h1>
+
+
+    <p>
+
+      Discover a modern fitness and wellness experience
+      built around movement, strength and balanced
+      everyday habits.
+
+    </p>
+
+
+    <div class="hero-buttons">
+
+
+      <a
+        href="#programs"
+        class="btn btn-primary"
+      >
+
+        Explore Programs
+
+      </a>
+
+
+      <a
+        href="#wellness"
+        class="btn btn-outline"
+      >
+
+        Discover Wellness
+
+      </a>
+
+
     </div>
 
   </div>
 
-  <script>
-    let seconds = 2;
 
-    const countdown = document.getElementById("countdown");
 
-    const timer = setInterval(() => {
-      seconds--;
+  <div class="floating-box">
 
-      countdown.textContent = seconds;
+    <h3>
+      Active Living
+    </h3>
 
-      if (seconds <= 0) {
-        clearInterval(timer);
-        // Put your legitimate destination URL here if needed.
-        // window.location.href = "https://example.com";
+    <p>
+
+      Explore movement, fitness and everyday
+      wellness in one modern space.
+
+    </p>
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     PROGRAM CARDS
+========================= -->
+
+<section
+  class="section"
+  id="programs"
+>
+
+  <div class="section-title">
+
+    <span>
+      EXPLORE ACTIVITIES
+    </span>
+
+
+    <h2>
+      Choose Your Fitness Experience
+    </h2>
+
+
+    <p>
+
+      Explore different approaches to movement,
+      fitness and everyday wellness.
+
+    </p>
+
+  </div>
+
+
+
+  <div class="card-grid">
+
+
+    <!-- STRENGTH CARD -->
+
+    <div class="fitness-card tilt-card">
+
+
+      <img
+        src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=85"
+        alt="Strength Training"
+      >
+
+
+      <div class="card-content">
+
+
+        <div class="number">
+          01
+        </div>
+
+
+        <h3>
+          Strength Training
+        </h3>
+
+
+        <p>
+
+          Explore strength-focused activities
+          in a modern and supportive
+          training environment.
+
+        </p>
+
+
+        <button
+          class="learn"
+          onclick="openDetails('strength')"
+        >
+
+          Learn More →
+
+        </button>
+
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ACTIVE CARD -->
+
+    <div class="fitness-card tilt-card">
+
+
+      <img
+        src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=900&q=85"
+        alt="Active Lifestyle"
+      >
+
+
+      <div class="card-content">
+
+
+        <div class="number">
+          02
+        </div>
+
+
+        <h3>
+          Active Lifestyle
+        </h3>
+
+
+        <p>
+
+          Discover enjoyable ways to make
+          movement and recreational activity
+          part of everyday life.
+
+        </p>
+
+
+        <button
+          class="learn"
+          onclick="openDetails('active')"
+        >
+
+          Learn More →
+
+        </button>
+
+
+      </div>
+
+    </div>
+
+
+
+    <!-- WELLNESS CARD -->
+
+    <div class="fitness-card tilt-card">
+
+
+      <img
+        src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=85"
+        alt="Everyday Wellness"
+      >
+
+
+      <div class="card-content">
+
+
+        <div class="number">
+          03
+        </div>
+
+
+        <h3>
+          Everyday Wellness
+        </h3>
+
+
+        <p>
+
+          Explore balanced everyday habits
+          around movement, hydration,
+          food choices and rest.
+
+        </p>
+
+
+        <button
+          class="learn"
+          onclick="openDetails('wellness')"
+        >
+
+          Learn More →
+
+        </button>
+
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     WELLNESS FEATURE
+========================= -->
+
+<section
+  class="section"
+  id="wellness"
+>
+
+  <div class="feature">
+
+
+    <div class="feature-image">
+
+
+      <img
+        src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=85"
+        alt="Fitness and wellness"
+      >
+
+
+    </div>
+
+
+
+    <div class="feature-text">
+
+
+      <h2>
+
+        Make Movement Part Of
+
+        <span>
+          Your Routine.
+        </span>
+
+      </h2>
+
+
+      <p>
+
+        Fitness can include strength training,
+        recreational movement, flexibility activities
+        and everyday physical activity.
+
+      </p>
+
+
+
+      <div class="points">
+
+
+        <div class="point">
+
+          <strong>
+            ✓ Flexible Activities
+          </strong>
+
+          <br>
+
+          Choose activities that fit your
+          interests and routine.
+
+        </div>
+
+
+
+        <div class="point">
+
+          <strong>
+            ✓ Positive Environment
+          </strong>
+
+          <br>
+
+          Explore fitness in a welcoming
+          and comfortable space.
+
+        </div>
+
+
+
+        <div class="point">
+
+          <strong>
+            ✓ Everyday Wellness
+          </strong>
+
+          <br>
+
+          Keep movement, balanced routines
+          and rest part of daily life.
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+
+  <div class="cta-content">
+
+
+    <h2>
+
+      Discover Your Next Activity.
+
+    </h2>
+
+
+    <p>
+
+      Explore fitness, movement and general
+      wellness information designed around
+      an active lifestyle.
+
+    </p>
+
+
+    <a
+      href="#programs"
+      class="btn btn-primary"
+      style="display:inline-block; margin-top:25px;"
+    >
+
+      Start Exploring
+
+    </a>
+
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  © 2026 Nexora.
+  All Rights Reserved.
+
+</footer>
+
+
+
+<!-- =========================
+     DETAIL SCREEN
+========================= -->
+
+<div
+  class="detail-screen"
+  id="detailScreen"
+>
+
+
+  <button
+    class="close"
+    onclick="closeDetails()"
+  >
+
+    ×
+
+  </button>
+
+
+
+  <div class="detail-inner">
+
+
+    <img
+      id="detailImage"
+      class="detail-image"
+      src=""
+      alt=""
+    >
+
+
+    <h1
+      id="detailTitle"
+    ></h1>
+
+
+    <p
+      id="detailDescription"
+    ></p>
+
+
+
+    <div class="detail-boxes">
+
+
+      <div class="detail-box">
+
+
+        <h3
+          id="box1Title"
+        ></h3>
+
+
+        <p
+          id="box1Text"
+        ></p>
+
+
+      </div>
+
+
+
+      <div class="detail-box">
+
+
+        <h3
+          id="box2Title"
+        ></h3>
+
+
+        <p
+          id="box2Text"
+        ></p>
+
+
+      </div>
+
+
+
+      <div class="detail-box">
+
+
+        <h3
+          id="box3Title"
+        ></h3>
+
+
+        <p
+          id="box3Text"
+        ></p>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+
+  /* 3D MOUSE TILT */
+
+  const cards =
+    document.querySelectorAll(
+      ".tilt-card"
+    );
+
+
+  cards.forEach(card => {
+
+
+    card.addEventListener(
+      "mousemove",
+      e => {
+
+
+        const rect =
+          card.getBoundingClientRect();
+
+
+        const x =
+          e.clientX - rect.left;
+
+
+        const y =
+          e.clientY - rect.top;
+
+
+        const centerX =
+          rect.width / 2;
+
+
+        const centerY =
+          rect.height / 2;
+
+
+        const rotateX =
+          (y - centerY) / 18;
+
+
+        const rotateY =
+          (centerX - x) / 18;
+
+
+        card.style.transform =
+
+          `rotateX(${rotateX}deg)
+           rotateY(${rotateY}deg)
+           translateY(-8px)`;
+
       }
-    }, 1000);
+    );
 
-    function continueToSite() {
-      // Put your legitimate destination URL here.
-      window.location.href = "https://example.com";
+
+
+    card.addEventListener(
+      "mouseleave",
+      () => {
+
+
+        card.style.transform =
+
+          "rotateX(0deg) rotateY(0deg) translateY(0)";
+
+      }
+    );
+
+
+  });
+
+
+
+  /* DETAIL CONTENT */
+
+  const content = {
+
+
+    strength:{
+
+      title:
+        "Strength Training",
+
+      image:
+        "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1500&q=90",
+
+      description:
+
+        "Strength training includes controlled resistance-based activities that can be organized into different routines depending on experience and preferences.",
+
+
+      box1Title:
+        "Training Activities",
+
+      box1Text:
+
+        "Explore different strength-focused movements and structured gym activities.",
+
+
+      box2Title:
+        "Mobility",
+
+      box2Text:
+
+        "Movement and flexibility activities can complement regular fitness sessions.",
+
+
+      box3Title:
+        "Recovery",
+
+      box3Text:
+
+        "Allowing appropriate time for rest can be part of a balanced activity routine."
+
+    },
+
+
+
+    active:{
+
+      title:
+        "Active Lifestyle",
+
+      image:
+        "https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=1500&q=90",
+
+      description:
+
+        "An active lifestyle can include walking, recreational sports, gym activities and other enjoyable forms of movement.",
+
+
+      box1Title:
+        "Daily Movement",
+
+      box1Text:
+
+        "Look for comfortable opportunities to add movement throughout the day.",
+
+
+      box2Title:
+        "Recreation",
+
+      box2Text:
+
+        "Sports and recreational activities can offer enjoyable ways to stay active.",
+
+
+      box3Title:
+        "Flexible Routine",
+
+      box3Text:
+
+        "Choose activities that work naturally with your interests and schedule."
+
+    },
+
+
+
+    wellness:{
+
+      title:
+        "Everyday Wellness",
+
+      image:
+        "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1500&q=90",
+
+      description:
+
+        "Everyday wellness can include movement, balanced food choices, hydration, rest and consistent daily routines.",
+
+
+      box1Title:
+        "Balanced Choices",
+
+      box1Text:
+
+        "A varied everyday eating pattern can form part of a balanced lifestyle.",
+
+
+      box2Title:
+        "Hydration",
+
+      box2Text:
+
+        "Regular hydration can be included as part of an everyday routine.",
+
+
+      box3Title:
+        "Rest",
+
+      box3Text:
+
+        "Time for rest and sleep can be an important part of a balanced routine."
+
     }
-  </script>
+
+  };
+
+
+
+  /* OPEN DETAILS */
+
+  function openDetails(type){
+
+
+    const data =
+      content[type];
+
+
+    document
+      .getElementById(
+        "detailImage"
+      )
+      .src =
+      data.image;
+
+
+    document
+      .getElementById(
+        "detailTitle"
+      )
+      .innerText =
+      data.title;
+
+
+    document
+      .getElementById(
+        "detailDescription"
+      )
+      .innerText =
+      data.description;
+
+
+    document
+      .getElementById(
+        "box1Title"
+      )
+      .innerText =
+      data.box1Title;
+
+
+    document
+      .getElementById(
+        "box1Text"
+      )
+      .innerText =
+      data.box1Text;
+
+
+    document
+      .getElementById(
+        "box2Title"
+      )
+      .innerText =
+      data.box2Title;
+
+
+    document
+      .getElementById(
+        "box2Text"
+      )
+      .innerText =
+      data.box2Text;
+
+
+    document
+      .getElementById(
+        "box3Title"
+      )
+      .innerText =
+      data.box3Title;
+
+
+    document
+      .getElementById(
+        "box3Text"
+      )
+      .innerText =
+      data.box3Text;
+
+
+
+    document
+      .getElementById(
+        "detailScreen"
+      )
+      .classList
+      .add(
+        "active"
+      );
+
+
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
+
+
+  /* CLOSE DETAILS */
+
+  function closeDetails(){
+
+
+    document
+      .getElementById(
+        "detailScreen"
+      )
+      .classList
+      .remove(
+        "active"
+      );
+
+
+    document.body.style.overflow =
+      "auto";
+
+  }
+
+
+</script>
+
 
 </body>
 </html>
